@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawable="clr-namespace:ConnectFour"
+             x:Class="ConnectFour.MainPage">
+
+    <ContentPage.Resources>
+        <drawable:GridDrawing x:Key="GridDrawable" />
+    </ContentPage.Resources>
+
+    <GraphicsView 
+        x:Name="Grid"                 
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+        Drawable="{StaticResource GridDrawable}">
+        <GraphicsView.GestureRecognizers>
+            <TapGestureRecognizer
+                Tapped="HandleGridTapped"
+                NumberOfTapsRequired="1" />
+        </GraphicsView.GestureRecognizers>
+    </GraphicsView>
+
+</ContentPage>
