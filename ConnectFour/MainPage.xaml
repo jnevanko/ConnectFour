@@ -8,16 +8,92 @@
         <drawable:GridDrawing x:Key="GridDrawable" />
     </ContentPage.Resources>
 
-    <GraphicsView 
-        x:Name="Grid"                 
-        HorizontalOptions="Fill"
-        VerticalOptions="Fill"
-        Drawable="{StaticResource GridDrawable}">
-        <GraphicsView.GestureRecognizers>
-            <TapGestureRecognizer
-                Tapped="HandleGridTapped"
-                NumberOfTapsRequired="1" />
-        </GraphicsView.GestureRecognizers>
-    </GraphicsView>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="1"
+                Text="Mode"
+                TextColor="Black"
+                BackgroundColor="LightGray"
+                Margin="5"
+                Clicked="HandleChangeMode"/>
+            <Button
+                Grid.Column="2"
+                Text="Undo"
+                TextColor="Black"
+                BackgroundColor="LightGray"
+                Margin="5"
+                Clicked="HandleUndo"/>
+            <Button
+                Grid.Column="3"
+                Text="Hint"
+                TextColor="Black"
+                BackgroundColor="LightGray"
+                Margin="5"
+                Clicked="HandleHint"/>
+            <Button
+                Grid.Column="4"
+                Text="Clear"
+                TextColor="Black"
+                BackgroundColor="LightGray"
+                Margin="5"
+                Clicked="HandleClearGrid"/>
+            <Button
+                Grid.Column="5"
+                Text="Stats"
+                TextColor="Black"
+                BackgroundColor="LightGray"
+                Margin="5"
+                Clicked="HandleResetStats"/>
+        </Grid>
+        <GraphicsView
+            Grid.Row="1"
+            x:Name="GridView"
+            Drawable="{StaticResource GridDrawable}"
+            SizeChanged="HandleGridViewSizeChanged">
+            <GraphicsView.GestureRecognizers>
+                <TapGestureRecognizer
+                    Tapped="HandleGridViewTapped"
+                    NumberOfTapsRequired="1" />
+            </GraphicsView.GestureRecognizers>
+        </GraphicsView>
+        <Grid
+            Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Column="0"
+                x:Name="SettingsLabel"
+                Margin="5" />
+            <Label
+                Grid.Column="1"
+                x:Name="StatusLabel"
+                FontAttributes="Bold"
+                Margin="5"
+                HorizontalTextAlignment="Center" />
+            <Label
+                Grid.Column="2"
+                x:Name="StatisticsLabel"
+                Margin="5" />
+        </Grid>
+    </Grid>
+    
 </ContentPage>

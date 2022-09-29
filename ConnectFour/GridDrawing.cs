@@ -5,6 +5,7 @@ public class GridDrawing : IDrawable
     const float WIDTH_TO_HEIGHT_RATIO = (float)Game.NUM_COLS / Game.NUM_ROWS;
 
     public Game Game;
+    public int HintColumn = -1;
 
     bool m_SizeIsValid = false;
     float m_ViewWidth = 0;
@@ -79,6 +80,8 @@ public class GridDrawing : IDrawable
         canvas.FillColor = Colors.Gold;
         canvas.FillRectangle(m_GridLeft, m_GridTop, m_GridWidth, m_GridHeight);
 
+        bool isShowingHint = false;
+
         for (int r = 0; r < Game.NUM_ROWS; ++r)
         {
             for (int c = 0; c < Game.NUM_COLS; ++c)
@@ -94,7 +97,16 @@ public class GridDrawing : IDrawable
                         break;
 
                     case HoleStatus.Empty:
-                        canvas.FillColor = Color.FromRgb(150, 180, 210);
+                        if (HintColumn == c &&
+                            !isShowingHint)
+                        {
+                            isShowingHint = true;
+                            canvas.FillColor = Colors.Chartreuse;
+                        }
+                        else
+                        {
+                            canvas.FillColor = Color.FromRgb(150, 180, 210);
+                        }
                         break;
 
                     default:
