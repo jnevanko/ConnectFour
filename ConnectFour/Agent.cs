@@ -4,9 +4,9 @@ namespace ConnectFour;
 
 public class Agent
 {
-    public const uint MIN_DIFFICULTY = 0;
-    public const uint MAX_DIFFICULTY = 10;
-    public const uint HINT_DIFFICULTY = 12;
+    public const int MIN_DIFFICULTY = 0;
+    public const int MAX_DIFFICULTY = 10;
+    public const int HINT_DIFFICULTY = 10;
 
     private Game m_Game = null;
     private Random m_Random = null;
@@ -46,7 +46,7 @@ public class Agent
         return choices;
     }
 
-    public int ChooseColumn(GameStatus winningStatus, uint difficulty)
+    public int ChooseColumn(GameStatus winningStatus, int difficulty)
     {
         List<Choice> choices = GetChoices(m_Game);
 
@@ -84,17 +84,6 @@ public class Agent
             bestChoice = FindBestChoice(choices, numSamples <= 0);
         }
         while (bestChoice == null);
-
-        Debug.Print("---------------");
-        foreach (Choice choice in choices)
-        {
-            Debug.Print(
-                "C: {0}, W: {1}, T: {2} {3}",
-                choice.Column,
-                choice.WinCount,
-                choice.TieCount,
-                choice.Column == bestChoice.Column ? "<--" : "");
-        }
 
         return bestChoice;
     }

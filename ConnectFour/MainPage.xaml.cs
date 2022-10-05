@@ -80,7 +80,7 @@ public partial class MainPage : ContentPage
         {
             ++m_Statistics.Hints;
 
-            StatusLabel.Text = "Computing Hint";  // TODO
+            StatusLabel.Text = "Wait";  // TODO
 
             ShowHint();
         }
@@ -288,22 +288,22 @@ public partial class MainPage : ContentPage
             case GameStatus.RedsTurn:
                 if (m_Settings.IsOnePlayer)
                 {
-                    StatusLabel.Text = "Your Turn";
+                    StatusLabel.Text = "You";
                 }
                 else
                 {
-                    StatusLabel.Text = "Red's Turn";
+                    StatusLabel.Text = "Red";
                 }
                 break;
 
             case GameStatus.BlacksTurn:
                 if (m_Settings.IsOnePlayer)
                 {
-                    StatusLabel.Text = "Computer's Thinking";
+                    StatusLabel.Text = "Wait";
                 }
                 else
                 {
-                    StatusLabel.Text = "Black's Turn";
+                    StatusLabel.Text = "Black";
                 }
                 break;
 
@@ -343,18 +343,18 @@ public partial class MainPage : ContentPage
     {
         if (m_Settings.IsOnePlayer)
         {
-            ulong total = m_Statistics.YourRedWins + m_Statistics.PcBlackWins + m_Statistics.Ties;
+            long total = m_Statistics.YourRedWins + m_Statistics.PcBlackWins + m_Statistics.Ties;
 
             int successRate =
                 m_Statistics.YourRedWins == 0 ?
                     0 :
                     (int)(m_Statistics.YourRedWins * 100 / total);
 
-            StatisticsLabel.Text = $"{m_Statistics.YourRedWins} Wins, {m_Statistics.PcBlackWins} Losses, {m_Statistics.Ties} Ties, {successRate}% Success Rate";
-        }
+            StatisticsLabel.Text = $"{m_Statistics.YourRedWins} Win, {m_Statistics.PcBlackWins} Loss, {m_Statistics.Ties} Tie, {successRate}% Success";
+        } 
         else
         {
-            StatisticsLabel.Text = $"{m_Statistics.YourRedWins} Red Wins, {m_Statistics.PcBlackWins} Black Wins, {m_Statistics.Ties} Ties";
+            StatisticsLabel.Text = $"{m_Statistics.YourRedWins} Red, {m_Statistics.PcBlackWins} Black, {m_Statistics.Ties} Tie";
         }
     }
 
